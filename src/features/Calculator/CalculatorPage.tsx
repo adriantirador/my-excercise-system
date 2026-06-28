@@ -56,8 +56,17 @@ export default function CalculatorPage() {
   };
 
   const handleEquals = () => {
-    if (operator === null || storedValue === null) return;
 
+    if (displayValue === "143") {
+      setDisplayValue("Need mo nang tanggapin na hindi ka niya mahal 😢!!!");
+      setStoredValue(null);
+      setOperator(null);
+      setWaitingForOperand(true);
+
+      return;
+    }
+
+    if (operator === null || storedValue === null) return;
     const result = calculate(storedValue, Number(displayValue), operator);
     setDisplayValue(String(Number(result.toFixed(8))));
     setStoredValue(null);
