@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import styles from "./ClockPage.module.scss";
 
 type ClockStyle = CSSProperties & {
@@ -44,6 +44,41 @@ export default function ClockPage() {
       "--second-angle": `${secondAngle}deg`,
     };
   }, [timeValue]);
+
+  const messageValue: Record<string, string> = {
+    "00:00:00": "Matulog ka na, bukas ka na maging productive. 😴",
+    "01:00:00": "1 AM na, 'last scroll' pa rin? 📱",
+    "02:00:00": "Ito na ang oras ng mga overthinker. 🤔",
+    "03:00:00": "3 AM thoughts: 'Magbabago na talaga ako bukas.' 😂",
+    "04:00:00": "May gising pa ba? O ikaw lang at ang multo? 👻",
+    "05:00:00": "Good morning sa mga hindi pa natutulog. ☀️",
+    "06:00:00": "Bangon! Hindi ka yayaman sa higaan. 💸",
+    "07:00:00": "Traffic na naman, kahit nasa bahay ka lang. 🚗",
+    "08:00:00": "Work mode... kunwari. 💻",
+    "09:00:00": "Meeting na walang katapusan. 📅",
+    "10:00:00": "Kape ulit? Pang-ilan na 'yan? ☕",
+    "11:00:00": "Malapit na lunch, konting tiis. 🍽️",
+    "12:00:00": "Lunch time! Diet starts tomorrow. 🍗",
+    "13:00:00": "Busog na? Antok na rin. 😪",
+    "14:00:00": "Productivity left the group chat. 📉",
+    "15:00:00": "3 PM = merienda o resign? 😂",
+    "16:00:00": "Malapit na uwian... sana. ⏰",
+    "17:00:00": "Rush hour na, pati utak mo traffic. 🚦",
+    "18:00:00": "Dinner na! Sana libre. 🍕",
+    "19:00:00": "Workout? O Netflix? Alam na. 📺",
+    "20:00:00": "Sasabihin mong maaga matutulog... sure. 😏",
+    "21:00:00": "One more episode lang. 🎬",
+    "22:00:00": "Nagre-review... ng memes. 🤣",
+    "23:00:00": "Matulog ka na, may bills ka pang babayaran bukas. 💸"
+  };
+
+  useEffect(() => {
+    const message = messageValue[timeValue];
+
+    if (message) {
+      alert(message)
+    }
+  }, [timeValue])
 
   return (
     <section className={styles.clockPage} aria-label="Clock page">
