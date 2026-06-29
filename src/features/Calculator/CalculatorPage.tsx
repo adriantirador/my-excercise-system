@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CalculatorPage.module.scss";
 
 type Operator = "+" | "-" | "*" | "/";
@@ -58,7 +58,7 @@ export default function CalculatorPage() {
   const handleEquals = () => {
 
     if (displayValue === "143") {
-      setDisplayValue("Need mo nang tanggapin na hindi ka niya mahal 😢!!!");
+      setDisplayValue("Need mo nang tanggapin na hindi ka niya mahal 😢😢😢");
       setStoredValue(null);
       setOperator(null);
       setWaitingForOperand(true);
@@ -75,11 +75,33 @@ export default function CalculatorPage() {
   };
 
   const handleClear = () => {
+    if (displayValue === "143") {
+      setDisplayValue("Hanggang ngayon, wala pa rin siyang pakialam sa'yo 😭😭😭");
+      setStoredValue(null);
+      setOperator(null);
+      setWaitingForOperand(true);
+      return
+    }
+    
     setDisplayValue("0");
     setStoredValue(null);
     setOperator(null);
     setWaitingForOperand(false);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (/^[0-9]$/.test(e.key)) {
+        setDisplayValue((prev) => prev + e.key);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <section className={styles.calculatorPage} aria-label="Calculator page">
