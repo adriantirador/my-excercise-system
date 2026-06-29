@@ -30,7 +30,7 @@ const formatDisplayTime = (value: string) => {
 };
 
 export default function ClockPage() {
-  const [timeValue, setTimeValue] = useState("12:00:00");
+  const [timeValue, setTimeValue] = useState("");
 
   const clockStyle = useMemo<ClockStyle>(() => {
     const { hours, minutes, seconds } = parseTime(timeValue);
