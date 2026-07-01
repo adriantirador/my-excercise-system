@@ -1,0 +1,125 @@
+.ticTacToe {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  width: min(100%, 430px);
+
+  > button {
+    min-height: 44px;
+    border: 0;
+    border-radius: 8px;
+    padding: 0 18px;
+    background: var(--primary);
+    color: var(--primary-contrast);
+    font-weight: 900;
+    box-shadow: 0 14px 28px rgba(7, 27, 53, 0.16);
+    transition:
+      background 160ms ease,
+      box-shadow 160ms ease;
+
+    &:hover {
+      background: var(--primary-strong);
+      box-shadow: 0 18px 34px rgba(7, 27, 53, 0.2);
+    }
+
+    &:focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 3px;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  width: min(100%, 430px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 20%, transparent), transparent 15rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface-strong) 88%, transparent), var(--surface)),
+    var(--surface);
+  box-shadow: var(--shadow);
+
+  button {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    min-width: 0;
+    min-height: 0;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--line) 84%, var(--accent));
+    border-radius: 8px;
+    background:
+      linear-gradient(160deg, color-mix(in srgb, var(--surface-strong) 92%, white), var(--surface-strong)),
+      var(--surface-strong);
+    color: var(--primary);
+    font-family: var(--font-geist-mono), "Courier New", monospace;
+    font-size: clamp(2.15rem, 9vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 8px 18px rgba(7, 27, 53, 0.12);
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      box-shadow 160ms ease;
+
+    &:hover {
+      border-color: var(--accent);
+      background:
+        linear-gradient(160deg, color-mix(in srgb, var(--primary-soft) 86%, white), var(--primary-soft)),
+        var(--primary-soft);
+      box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 28%, transparent);
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 1;
+      background:
+        linear-gradient(160deg, color-mix(in srgb, var(--primary-soft) 72%, var(--surface)), var(--surface-strong)),
+        var(--surface-strong);
+      color: var(--accent);
+      box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+
+    &:disabled:hover {
+      border-color: color-mix(in srgb, var(--line) 84%, var(--accent));
+    }
+
+    &:focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 2px;
+      border-color: var(--accent);
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .ticTacToe {
+    justify-items: stretch;
+  }
+
+  .container {
+    width: min(100%, 460px);
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .ticTacToe > button {
+    width: 100%;
+  }
+}
