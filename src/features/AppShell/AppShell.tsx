@@ -4,6 +4,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import CalculatorPage from "@/src/features/Calculator/CalculatorPage";
 import ClockPage from "@/src/features/Clock/ClockPage";
 import ReminderPage from "@/src/features/Reminder/ReminderPage";
+import TicTacToe from "../TicTacToe/TicTacToePage";
 import styles from "./AppShell.module.scss";
 
 type Theme = "light" | "dark";
@@ -53,6 +54,10 @@ const pageContent = {
   clock: {
     title: "Clock",
     copy: "Type a time and watch the clock hands move with your input.",
+  },
+  tictactoe: {
+    title: "Tic Tac Toe",
+    copy: "A timeless battle of strategy. Think ahead, block your opponent, and be the first to complete three in a row.",
   },
 };
 
@@ -129,6 +134,14 @@ export default function AppShell() {
           >
             Clock
           </button>
+          <button
+            type="button"
+            className={activePage === "tictactoe" ? styles.active : ""}
+            onClick={() => selectPage("tictactoe")}
+            aria-current={activePage === "tictactoe" ? "page" : undefined}
+          >
+            Tic Tac Toe
+          </button>
         </nav>
 
         <div className={styles.themeCard}>
@@ -163,6 +176,7 @@ export default function AppShell() {
         {activePage === "reminder" ? <ReminderPage /> : null}
         {activePage === "calculator" ? <CalculatorPage /> : null}
         {activePage === "clock" ? <ClockPage /> : null}
+        {activePage === "tictactoe" ? <TicTacToe /> : null}
       </div>
     </main>
   );
