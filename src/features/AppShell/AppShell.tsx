@@ -8,7 +8,7 @@ import TicTacToe from "../TicTacToe/TicTacToePage";
 import styles from "./AppShell.module.scss";
 
 type Theme = "light" | "dark";
-type ActivePage = "reminder" | "calculator" | "clock";
+type ActivePage = "reminder" | "calculator" | "clock" | "tictactoe";
 
 const getThemeSnapshot = (): Theme => {
   const storedTheme = window.localStorage.getItem("exercise-system-theme");
