@@ -18,7 +18,7 @@ export default function MineweeperPage() {
   const [boxes, setBoxes] = useState<Box[]>([]);
   const [selectedLevel, setSelectedLevel] = useState<number>(0);
   const [showScare, setShowScare] = useState(false);
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(10);
   const [ip, setIp] = useState("");
 
   const handleClick = async (idx: number) => {
@@ -29,14 +29,14 @@ export default function MineweeperPage() {
     });
 
     if (boxes[idx]?.isBomb) {
-      try {
-        const res = await fetch("https://api.ipify.org?format=json");
-        const data = await res.json();
-        setIp(data.ip);
-      } catch {
-        setIp("unknown");
-      }
-      setCountdown(5);
+      //   try {
+      //     const res = await fetch("https://api.ipify.org?format=json");
+      //     const data = await res.json();
+      //     setIp(data.ip);
+      //   } catch {
+      //     setIp("unknown");
+      //   }
+      setCountdown(10);
       setShowScare(true);
     }
   };
@@ -110,12 +110,22 @@ export default function MineweeperPage() {
       {showScare && (
         <div className={styles.scareOverlay}>
           <p className={styles.warning}>⚠️⚠️⚠️ SYSTEM ALERT ⚠️⚠️⚠️</p>
-          {countdown > 0 && <p className={styles.countdown}>{countdown}</p>}
-          <p className={styles.ipBig}>{ip}</p>
+          {/* <p className={styles.ipBig}>{ip}</p> */}
+          <p className={styles.ipBig}> ⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️</p>
           <p className={styles.virusText}>
             {countdown <= 0 ? "😂 JUST KIDDING! You got pranked 😂" : "Installing a virus... 😈😈😈"}
           </p>
+          {countdown > 0 && <p className={styles.countdown}>{countdown}</p>}
           {countdown < 1 && <button onClick={() => setShowScare(false)}>Close</button>}
+
+          <iframe
+            width="0"
+            height="0"
+            src="https://www.youtube.com/embed/PDJLvF1dUek?autoplay=1&loop=1&playlist=PDJLvF1dUek"
+            title="Background Music"
+            allow="autoplay"
+            style={{ display: "none" }}
+          />
         </div>
       )}
 
