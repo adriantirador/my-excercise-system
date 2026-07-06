@@ -5,10 +5,11 @@ import CalculatorPage from "@/src/features/Calculator/CalculatorPage";
 import ClockPage from "@/src/features/Clock/ClockPage";
 import ReminderPage from "@/src/features/Reminder/ReminderPage";
 import TicTacToe from "../TicTacToe/TicTacToePage";
+import MinesweeperPage from "../Minesweeper/MinesweeperPage";
 import styles from "./AppShell.module.scss";
 
 type Theme = "light" | "dark";
-type ActivePage = "reminder" | "calculator" | "clock" | "tictactoe";
+type ActivePage = "reminder" | "calculator" | "clock" | "tictactoe" | "minesweeper";
 
 const getThemeSnapshot = (): Theme => {
   const storedTheme = window.localStorage.getItem("exercise-system-theme");
@@ -58,6 +59,10 @@ const pageContent = {
   tictactoe: {
     title: "Tic Tac Toe",
     copy: "A timeless battle of strategy. Think ahead, block your opponent, and be the first to complete three in a row.",
+  },
+  minesweeper: {
+    title: "Minesweeper",
+    copy: "Reveal safe tiles, read the nearby mine counts, and clear the board.",
   },
 };
 
@@ -142,6 +147,14 @@ export default function AppShell() {
           >
             Tic Tac Toe
           </button>
+          <button
+            type="button"
+            className={activePage === "minesweeper" ? styles.active : ""}
+            onClick={() => selectPage("minesweeper")}
+            aria-current={activePage === "minesweeper" ? "page" : undefined}
+          >
+            Minesweeper
+          </button>
         </nav>
 
         <div className={styles.themeCard}>
@@ -177,6 +190,7 @@ export default function AppShell() {
         {activePage === "calculator" ? <CalculatorPage /> : null}
         {activePage === "clock" ? <ClockPage /> : null}
         {activePage === "tictactoe" ? <TicTacToe /> : null}
+        {activePage === "minesweeper" ? <MinesweeperPage /> : null}
       </div>
     </main>
   );
