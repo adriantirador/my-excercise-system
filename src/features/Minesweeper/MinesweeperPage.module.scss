@@ -149,9 +149,12 @@
 }
 
 @keyframes blinkBg {
-  0%   { background: #810606; }
-  50%  { background: #055a05; }
-  100% { background: #810606; }
+  0%   { background: red; }
+  20%  { background: blue; }
+  40% { background: green; }
+  60% { background: violet; }
+  80% { background: orange; }
+  100% { background: yellow; }
 }
 
 .ipBig { font-size: 4rem; font-weight: bold; color: #fff; }
