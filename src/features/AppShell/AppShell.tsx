@@ -6,10 +6,11 @@ import ClockPage from "@/src/features/Clock/ClockPage";
 import ReminderPage from "@/src/features/Reminder/ReminderPage";
 import TicTacToe from "../TicTacToe/TicTacToePage";
 import MinesweeperPage from "../Minesweeper/MinesweeperPage";
+import CatchMePage from "../CatchMe/CatchMePage";
 import styles from "./AppShell.module.scss";
 
 type Theme = "light" | "dark";
-type ActivePage = "reminder" | "calculator" | "clock" | "tictactoe" | "minesweeper";
+type ActivePage = "reminder" | "calculator" | "clock" | "tictactoe" | "minesweeper" | "catchme";
 
 const getThemeSnapshot = (): Theme => {
   const storedTheme = window.localStorage.getItem("exercise-system-theme");
@@ -63,6 +64,10 @@ const pageContent = {
   minesweeper: {
     title: "Minesweeper",
     copy: "Reveal safe tiles, read the nearby mine counts, and clear the board.",
+  },
+  catchme: {
+    title: "Catch Me",
+    copy: "Type a little text to make the submit button stop running away.",
   },
 };
 
@@ -155,6 +160,14 @@ export default function AppShell() {
           >
             Minesweeper
           </button>
+          <button
+            type="button"
+            className={activePage === "catchme" ? styles.active : ""}
+            onClick={() => selectPage("catchme")}
+            aria-current={activePage === "catchme" ? "page" : undefined}
+          >
+            Catch Me
+          </button>
         </nav>
 
         <div className={styles.themeCard}>
@@ -191,6 +204,7 @@ export default function AppShell() {
         {activePage === "clock" ? <ClockPage /> : null}
         {activePage === "tictactoe" ? <TicTacToe /> : null}
         {activePage === "minesweeper" ? <MinesweeperPage /> : null}
+        {activePage === "catchme" ? <CatchMePage /> : null}
       </div>
     </main>
   );
